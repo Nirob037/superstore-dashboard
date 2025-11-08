@@ -17,7 +17,7 @@ st.set_page_config(
 def load_data():
     # Load the cleaned Superstore data
     df = pd.read_csv('Superstore.csv')
-    
+
     # Apply the same data cleaning you did in your analysis
     df['Order Date'] = pd.to_datetime(df['Order Date'])
     df['Ship Date'] = pd.to_datetime(df['Ship Date'])
@@ -25,7 +25,7 @@ def load_data():
     df['Order Year'] = df['Order Date'].dt.year
     df['Order Month'] = df['Order Date'].dt.month
     df['Shipping Days'] = (df['Ship Date'] - df['Order Date']).dt.days
-    
+
     return df
 
 df = load_data()
@@ -100,14 +100,14 @@ col1, col2 = st.columns(2)
 
 with col1:
     category_sales = filtered_df.groupby('Category')['Sales'].sum().reset_index()
-    fig1 = px.bar(category_sales, x='Category', y='Sales', 
+    fig1 = px.bar(category_sales, x='Category', y='Sales',
                   title='Sales by Product Category',
                   color='Category')
     st.plotly_chart(fig1, use_container_width=True)
 
 with col2:
     region_profit = filtered_df.groupby('Region')['Profit'].sum().reset_index()
-    fig2 = px.bar(region_profit, x='Region', y='Profit', 
+    fig2 = px.bar(region_profit, x='Region', y='Profit',
                   title='Profit by Region',
                   color='Region')
     st.plotly_chart(fig2, use_container_width=True)
@@ -140,10 +140,10 @@ with col5:
         'Profit': 'sum'
     }).reset_index()
     monthly_data['Date'] = pd.to_datetime(
-        monthly_data['Order Year'].astype(str) + '-' + 
+        monthly_data['Order Year'].astype(str) + '-' +
         monthly_data['Order Month'].astype(str) + '-01'
     )
-    fig5 = px.line(monthly_data, x='Date', y='Sales', 
+    fig5 = px.line(monthly_data, x='Date', y='Sales',
                    title='Monthly Sales Trend')
     st.plotly_chart(fig5, use_container_width=True)
 
@@ -154,7 +154,7 @@ with col6:
         'Shipping Days': 'mean'
     }).reset_index()
     shipping_analysis['Margin'] = (shipping_analysis['Profit'] / shipping_analysis['Sales']) * 100
-    
+
     fig6 = px.bar(shipping_analysis, x='Ship Mode', y='Margin',
                   title='Profit Margin by Shipping Mode',
                   color='Ship Mode')
@@ -178,7 +178,7 @@ with insight_col2:
     st.subheader("🎯 Growth Opportunities")
     st.markdown("""
     - **Home Office Segment**: Highest profit margins
-    - **Technology Products**: Most profitable category  
+    - **Technology Products**: Most profitable category
     - **West Region**: Best performing region
     - **Premium Shipping**: Better margins
     """)
@@ -187,5 +187,5 @@ with insight_col2:
 st.markdown("---")
 st.markdown("""
 **Dashboard Created with Streamlit** | Based on Superstore Sales Data (2015-2018)
-| **Analysis by:** [Your Name]
+| **Analysis by:** [Arafat Hossain]
 """)
