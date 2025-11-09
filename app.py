@@ -307,7 +307,7 @@ st.markdown("""
 # Footer
 st.markdown("---")
 st.markdown("""
-**Superstore Retail Analysis Dashboard** | Data-Driven Business Intelligence | Built with Streamlit
+**Superstore Retail Analysis Dashboard** | Data-Driven Business Intelligence | **Author: Arafat Hossain**
 """)
 '''
 
